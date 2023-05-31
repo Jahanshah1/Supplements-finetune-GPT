@@ -5,4 +5,4 @@ model_davinci = 'openai api completions.create -m davinci:ft-personal-2023-04-30
 
 sample_prompt = 'openai api completions.create -m davinci:ft-personal-2023-04-30-03-50-36 -p 'which is the best whey supplement for athletes' --max-tokens 100'
 
-export OPENAI_API_KEY="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"
+export OPENAI_API_KEY="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"
