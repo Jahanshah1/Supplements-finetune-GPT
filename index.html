@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Synapsed Finetuned model supplements LLM</h1>
+    <input type="text" id="input" placeholder="enter your prompt">
+    <button id="button">Generate</button>
+    <div id="output">Output</div>
+
+    <script>
+
+        const OPENAI_API_KEY = "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";
+
+        button.addEventListener("click", () => {
+            const input = document.getElementById('input').value;
+            const data = {
+                model: 'davinci:ft-personal-2023-04-30-03-50-36',
+                prompt: `${input} ->`,
+                max_tokens: 200,
+
+            };
+
+            fetch(`https://api.openai.com/v1/completions`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${OPENAI_API_KEY}`
+                },
+                body: JSON.stringify(data)
+            })
+            .then((res) => {
+                return res.json();
+            })
+            .then((dat) => {
+                console.log(dat);
+                const output = dat.choices[0].text;
+                document.getElementById('output').innerHTML = output;
+            });
+        })
+    </script>
+</body>
+</html>
